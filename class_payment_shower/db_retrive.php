@@ -1,6 +1,6 @@
 <?php
 $connection = mysqli_connect("localhost","root","Nishadi@1918");
-$db = mysqli_select_db($connection,'sumaga_batagama');
+$db = mysqli_select_db($connection,'sumaga_batu304157271_sumaga_batagam');
 
 $query_run = mysqli_query($connection,$query);
 					

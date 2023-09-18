@@ -5,7 +5,7 @@ if(!$con) {
     echo 'not connected to the server';
 }
 
-if(!mysqli_select_db($con,'sumaga_batagama')) {
+if(!mysqli_select_db($con,'u304157271_sumaga_batagam')) {
     echo 'database not selected';
 }
 

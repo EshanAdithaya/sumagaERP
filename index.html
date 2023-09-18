@@ -1,12 +1,10 @@
-
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Student Details</title>
-	<center><font size='10'color="red">Sumaga Batagama</font><br> <u><font color="black" size="10">Data Retriving page(payments)</u></br></font></center><br><br>
+    <title>Home</title>
+	<center><font size='10'color="red">Sumaga Batagama</font><br> <u><font color="black" size="10">Home</u></br></font></center><br><br>
 	
 	<style>
 	
@@ -102,7 +100,7 @@ footer{
     }
 }
 
-ul {
+	ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -112,11 +110,6 @@ ul {
 
 li {
   float: left;
-  border-right:1px solid #bbb;
-}
-
-li:last-child {
-  border-right: none;
 }
 
 li a {
@@ -133,7 +126,7 @@ li a:hover:not(.active) {
 
 .active {
   background-color: #4CAF50;
-} 
+}
 		table {
 		font-family: arial, sans-serif;
 		border-collapse: collapse;
@@ -167,7 +160,7 @@ li a:hover:not(.active) {
   display: inline-block;
     text-transform: uppercase;
   cursor: pointer;
-  
+
 }
 
 .button:hover {opacity: 1}
@@ -187,70 +180,31 @@ li a:hover:not(.active) {
   cursor: pointer;
 }
 
-.button1:hover {opacity: 1
-
-<?php
-$connection = mysqli_connect("localhost","root","");
-$query_run = mysqli_query($connection,$query);
-$db = mysqli_select_db($connection,'sumaga batagama(payments)');
-
-if(isset($_POST['submit']))
-	
-$query="select * form payments";
-$result=mysql_query($query);
-?>
+.button1:hover {opacity: 1}
 
 	
 		
 		</style>
-		</head>
-		
-			<body>
-			
-			<ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="student dtails/studentdtails.php">Student Registration</a></li>
-  <li><a href="C:\xampp\htdocs\sumaga\billing form/billing.php">Billing section</a></li>
-  <li><a class="active" href="retrive.php">Student Details</a></li>
-  <li><a href="#about">Payment Details</a></li>
+  </head>
+  <body>
+ 
+    
+ <ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="student registration/studentdtails.php">Student Registration</a></li>
+  <li><a href="billing form/billing.php">Billing section</a></li>
+  <li><a href="student details/student details.php">Student Details</a></li>
+   <li><a href="payment details/retrive.php">Payment Details</a></li>
+   <li><a href="class_payment_shower/pay_Cla_See.php">Student Details</a></li>
+  
   
 </ul>
-			<center>
-			<table id="table" align="center"><caption>student dtails(old)</caption>
-			 <t>
-			 <th> database id:-</th>
-			
-			<th> student ID:-</th>
-			
-			<th> amount:-</th>
-			
-			<th> month of paid:-</th>
-			
-			<th> grade:-</th>
-			
-			<th> paymented date:-</th>
-			</t>
-			
-			<?php
-			while($rows=mysql_fetch_assoc($result))
-			
-			?>
-				<tr>
-				<td><?php echo $rows[ID]; ?></td>
-				<td><?php echo $rows[student_name]; ?></td>
-				<td><?php echo $rows[student_ID]; ?></td>
-				<td><?php echo $rows[amount]; ?></td>
-				<td><?php echo $rows[month]; ?></td>
-				<td><?php echo $rows[grade]; ?></td>
-				<td><?php echo $rows[payment_date]; ?></td>
-				</tr>
-			</table></center>
-			
-			</font><br>
-			<a href='student dtails home page.html'><center><button class="button">back</button></center><br></a>
-			<center><button class="button">print</button></center>
-			
-			<footer>
+ 
+	
+ <h1><marquee>Welcome to sumaga Education Institute computerized Learning Management system.</marquee></h1><br><br><br><h1>special requests........</h1><br><br>
+ <br><br><br><br>
+ <br>
+    <footer>
       <div class="footer-container">
         <div class="left-col">
           <img src="logo.jpg" alt="" class="logo">
@@ -267,7 +221,5 @@ $result=mysql_query($query);
        
     </footer>
 	</style>
-			
-			</body>
-
+  </body>
 </html>

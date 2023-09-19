@@ -1,27 +1,32 @@
 <?php
-$con = mysqli_connect('127.0.0.1', 'root', 'Nishadi@1918');
+// Establish a connection to the MySQL server
+$con = mysqli_connect('127.0.0.1', 'root', '', 'stu_mgt');
 
 if (!$con) {
-    echo 'not connected to the server';
+    echo '<script>alert("Not connected to the server: ' . mysqli_connect_error() . '");</script>';
 }
 
-if (!mysqli_select_db($con, 'u304157271_sumaga_batagam')) {
-    echo 'database not selected';
-}
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve data from the POST request 
+    $studentName = isset($_POST['studentName']) ? $_POST['studentName'] : '';
+    $stid = isset($_POST['studentID']) ? $_POST['studentID'] : '';
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
+    $month = isset($_POST['month']) ? $_POST['month'] : '';
+    $grade = isset($_POST['grade']) ? $_POST['grade'] : '';
+    $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+    $medium = isset($_POST['medium']) ? $_POST['medium'] : '';
 
-$student_name = $_POST['name'];
-$student_ID = $_POST['ID'];
-$amount = $_POST['amount'];
-$month = $_POST['month'];
-$grade = $_POST['grade'];
+    // Create the SQL query for insertion into payments table
+    $sql2 = "INSERT INTO `payments` (`studentName`, `stid`, `amount`, `Month`, `Grade`, `subject`, `medium`)
+             VALUES ('$studentName', '$stid', '$amount', '$month', '$grade', '$subject', '$medium')";
 
-$sql = "INSERT INTO payments(`student_name`, `student_ID`, `amount`, `month`, `grade`) 
-        VALUES ('$student_name','$student_ID','$amount','$month','$grade')";
-
-if (!mysqli_query($con, $sql)) {
-    echo '<h1>not inserted</h1>';
-} else {
-    echo '<h1>inserted</h1>';
+    // Execute the SQL query
+    if (!mysqli_query($con, $sql2)) {
+        echo '<script>alert("Failed to Insert Data: ' . mysqli_error($con) . '");</script>';
+    } else {
+        echo '<script>alert("Inserted");</script>';
+    }
 }
 
 // Close the database connection when done

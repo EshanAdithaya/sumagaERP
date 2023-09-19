@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <div id="loginMethods">
+        <button id="usernamePasswordLogin">Username/Password Login</button>
+        <button id="fingerprintLogin">Fingerprint Login</button>
+    </div>
+    <form id="loginForm" style="display:none;">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        // Check for browser support
+        if (window.PublicKeyCredential) {
+            const loginMethods = document.getElementById("loginMethods");
+            const usernamePasswordLoginButton = document.getElementById("usernamePasswordLogin");
+            const fingerprintLoginButton = document.getElementById("fingerprintLogin");
+            const loginForm = document.getElementById("loginForm");
+
+            // Show the username/password login form when clicked
+            usernamePasswordLoginButton.addEventListener("click", () => {
+                loginMethods.style.display = "none";
+                loginForm.style.display = "block";
+            });
+
+            // Request fingerprint authentication when clicked
+            fingerprintLoginButton.addEventListener("click", () => {
+                // Request fingerprint authentication
+                navigator.credentials.create({
+                    publicKey: {
+                        challenge: new Uint8Array(32),
+                        rp: {
+                            name: "Your App Name",
+                        },
+                        user: {
+                            id: new Uint8Array(32),
+                            name: "user@example.com",
+                            displayName: "User",
+                        },
+                        pubKeyCredParams: [
+                            { type: "public-key", alg: -7 },
+                        ],
+                    },
+                }).then((credential) => {
+                    // Handle successful authentication
+                    // You would typically send the credential to the server for verification
+                    // and then redirect to the home page on successful login.
+                    alert("Fingerprint authentication successful!");
+                    // Replace this with your actual redirection logic.
+                    window.location.href = "home.html"; // Redirect to the home page
+                }).catch((error) => {
+                    // Handle errors
+                    console.error("Fingerprint authentication error:", error);
+                    alert("Fingerprint authentication failed. Please try another method.");
+                });
+            });
+        } else {
+            // Fingerprint authentication not supported
+            alert("Fingerprint authentication is not supported in this browser.");
+        }
+    </script>
+</body>
+</html>

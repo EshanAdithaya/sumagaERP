@@ -1,14 +1,14 @@
 <?php
 // Establish a connection to the MySQL server
-$con = mysqli_connect('127.0.0.1', 'root', 'Nishadi@1918');
+$con = mysqli_connect('Localhost', 'root');
 
 if (!$con) {
-    echo 'Not connected to the server';
+    die('Connection error: ' . mysqli_connect_error());
 }
 
-// Select the database
-if (!mysqli_select_db($con, 'u304157271_sumaga_batagam')) {
-    echo 'Database not selected';
+// Only select the database if the connection is successful
+if (!mysqli_select_db($con, 'sumaga_batagam')) {
+    die('Database selection error: ' . mysqli_error($con));
 }
 
 // Retrieve data from the POST request
@@ -29,7 +29,7 @@ $sql = "INSERT INTO student_details(`name`, `address`, `telephone_number`, `scho
 
 // Execute the SQL query
 if (!mysqli_query($con, $sql)) {
-    echo '<h1>Not inserted</h1>';
+    die('Insertion error: ' . mysqli_error($con));
 } else {
     echo '<h1>Inserted</h1>';
 }
